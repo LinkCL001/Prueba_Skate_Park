@@ -9,10 +9,18 @@ router.post("/skaters", (req, res) => {
     .catch((error) => res.json({ error }));
 });
 
-router.delete("/skaters/:id", (_, res) => {
-  db.eliminar(id)
-    .then(() => res.json({ message: "eliminado" }))
+router.get("/skaters", (_, res) => {
+  db.listar()
+    .then((skaters) => res.json(skaters))
     .catch((error) => res.json({ error }));
 });
+
+
+
+// router.delete("/skaters/:id", (_, res) => {
+//   db.eliminar(id)
+//     .then(() => res.json({ message: "eliminado" }))
+//     .catch((error) => res.json({ error }));
+// });
 
 module.exports = router;

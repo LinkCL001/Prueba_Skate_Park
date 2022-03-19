@@ -23,6 +23,14 @@ rutas.post("/skater-create", (req, res) => {
     .catch((err) => res.render("error", { title: "Error al crear skater", message: err }))
 })
 
+rutas.post("/skaters-create", (req, res) => {
+  const { target_file } = req.files;
+  const { nombre } = req.body;
+  target_file.mv(`${__dirname}/public/imgs/${nombre}.jpg`, (err) => {
+  res.redirect('/')
+  });
+});
+
 // rutas.get('/login-inicio', (req, res) => {
 //   const { email, password } = req.query;
 //   const user = users.find((u) => u.email == email && u.password == password);
@@ -43,7 +51,6 @@ rutas.post("/skater-create", (req, res) => {
 // rutas.get("/skater-delete/:id", async (req, res) => {
 //   const { id } = req.params
 //   const { confirmado } = req.query
-
 //   try {
 //     if (confirmado)
 //       await db.eliminar(id).then(() => res.redirect("/"))

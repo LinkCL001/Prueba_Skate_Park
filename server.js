@@ -2,12 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 const front = require("./rutas/front");
-const apiget = require("./rutas/apiget");
-const apipost = require("./rutas/apipost");
+const api = require("./rutas/api");
+const expressFileUpload = require('express-fileupload');
+const fs = require('fs');
 
 const port = process.env.PORT || 3000
 const app = express()
-
 
 app.listen(port, () => {
   console.log(`El servidor está inicializando en el puerto ${port}`)
@@ -18,7 +18,32 @@ app.use(bodyParser.json())
 
 app.set("view engine", "handlebars");
 
-app.use("/", express.static(__dirname + "/Assets/"));
+app.use("/", express.static(__dirname + "/Assets/css/estilos.css"));
+
+app.set("views", "./views")
+
+app.get("/", (_, res) => {
+  res.render("Dashboard", {});
+});
+
+app.use(
+  "/bootstrap",
+  express.static(__dirname + "/node_modules/bootstrap/dist/css")
+);
+app.use(
+  "/jquery", express.static(__dirname + "/node_modules/jquery/dist")
+);
+app.use(
+  "/bootstrapJS",
+  express.static(__dirname + "/node_modules/bootstrap/dist/js")
+);
+
+app.use(expressFileUpload({
+  limits: { fileSize: 5000000 },
+  abortOnLimit: true,
+  responseOnLimit: "El peso del archivo que intentas subir supera ellimite permitido",
+  })
+);
 
 app.engine(
   "handlebars",
@@ -31,12 +56,9 @@ app.engine(
   })
 );
 
-app.get("/", (_, res) => {
-  res.render("Dashboard", {});
-});
 
-app.use(apiget);
-app.use(apipost)
+
+app.use(api);
 
 app.use(front);
 
