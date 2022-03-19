@@ -1,4 +1,4 @@
-CREATE DATABASE skatepark;
+--CREATE DATABASE skatepark;
 
 CREATE TABLE skaters (id SERIAL, email VARCHAR(50) NOT NULL,  nombre
 VARCHAR(25) NOT NULL, password VARCHAR(25) NOT NULL, anos_experiencia

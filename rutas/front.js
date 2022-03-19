@@ -24,9 +24,8 @@ rutas.post("/skater-create", (req, res) => {
 })
 
 rutas.post("/skaters-create", (req, res) => {
-  const { target_file } = req.files;
-  const { nombre } = req.body;
-  target_file.mv(`${__dirname}/public/imgs/${nombre}.jpg`, (err) => {
+  const { fotos } = req.files;
+  fotos.mv(`${__dirname}/public/imgs/${fotos}.jpg`, (err) => {
   res.redirect('/')
   });
 });

@@ -7,18 +7,29 @@ junto con algunos cambios.
 
 ```bash
 ├── db.js
-├── Dockerfile
+├── migrate.js
 ├── rutas
 │   ├── api.js
 │   └── front.js
 ├── server.js
+├── Assets
+    ├── css
+    ├── img
+├── data
+    ├── admin.js
+├── public
+    ├── imgs
 └── views
-    ├── create.handlebars
-    ├── delete.handlebars
-    ├── error.handlebars
-    ├── home.handlebars
+    ├── Dashboard.handlebars
+    ├── Login.handlebars
+    ├── 
+    ├── Registro.handlebars
     └── layouts
         └── main.handlebars
+    └── component
+        └── Admin.handlebars
+        └── Datos.handlebars
+        └── Home.handlebars
 ```
 
 ## Tabla PostgreSQL requerida
@@ -26,16 +37,12 @@ junto con algunos cambios.
 Antes de correr este proyecto asegúrate de tener esta tabla creada
 
 ```sql
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE DATABASE skatepark;
 
-CREATE TABLE IF NOT EXISTS users (
-    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-    username TEXT UNIQUE NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
-);
-```
+CREATE TABLE skaters (id SERIAL, email VARCHAR(50) NOT NULL,  nombre
+VARCHAR(25) NOT NULL, password VARCHAR(25) NOT NULL, anos_experiencia
+INT NOT NULL, especialidad VARCHAR(50) NOT NULL, foto VARCHAR(255) NOT
+NULL, estado BOOLEAN NOT NULL);
 
 ## Correr localmente
 

@@ -4,35 +4,35 @@
       <h2>Registro</h2>
       <hr class="w-50" />
 
-      <form method="post">
+      <form method="POST" action="/skaters-create" enctype="multipart/form-data">
         <div class="form-group row w-50 m-auto">
           <div class="form-group col-12 col-sm-6">
             <label for="email" class="form-label">Email</label>
             <input type="email" id="email" name="email"class="form-control m-auto"/>
           </div>
           <div class="form-group col-12 col-sm-6">
-            <label>Nombre</label>
-            <input class="form-control m-auto" />
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre"class="form-control m-auto" />
           </div>
           <div class="form-group col-12 col-sm-6">
             <label for="password" class="form-label">Password</label>
             <input type="password" id="password" name="password"class="form-control m-auto" />
           </div>
           <div class="form-group col-12 col-sm-6">
-            <label>Repita la password</label>
-            <input class="form-control m-auto" />
+            <label for="password" class="form-label">Repita la password</label>
+            <input type="password" id="password" name="password" class="form-control m-auto" />
           </div>
           <div class="form-group col-12 col-sm-6">
-            <label>Años de experiencia</label>
-            <input class="form-control m-auto" />
+            <label for="anos_experiencia" class="form-label">Años de experiencia</label>
+            <input type="text" id="anos_experiencia" name="anos_experiencia" class="form-control m-auto" />
           </div>
           <div class="form-group col-12 col-sm-6">
-            <label>Especialidad</label>
-            <input class="form-control m-auto" />
+            <label for="especialidad" class="form-label">Especialidad</label>
+            <input type="text" id="especialidad" name="especialidad" class="form-control m-auto" />
           </div>
           <div class="form-group col-12 col-sm-12">
             <label>Foto de perfil</label>
-            <input type="file" id="foto"/>
+            <input type="file" name="fotos" id="foto"/>
           </div>
         </div>
         <button type="submit" class="btn btn-info mb-3">Registrarme</button>
