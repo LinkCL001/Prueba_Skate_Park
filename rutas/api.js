@@ -16,7 +16,6 @@ router.get("/skaters", (_, res) => {
 });
 
 
-
 // router.delete("/skaters/:id", (_, res) => {
 //   db.eliminar(id)
 //     .then(() => res.json({ message: "eliminado" }))
