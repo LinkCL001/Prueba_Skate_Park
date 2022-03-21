@@ -1,34 +1,37 @@
 const { Router } = require("express");
-const db = require("../db")
+const db = require("../db");
 //const users = require('../data/admin').results;
-const rutas = Router()
+const rutas = Router();
 
 //const jwt = require('jsonwebtoken');
-
 rutas.get("/", async (_, res) => {
-  res.render("home", { users: await db.listar() })
-})
+  const skaters = await db.listar();
+  console.log(skaters);
+  res.render("Dashboard", {skaters});
+});
 
 rutas.get("/skater-create", (_, res) => {
-  res.render("registro")
-})
+  res.render("registro");
+});
 
 rutas.get("/login-inicio", (_, res) => {
-  res.render("login")
-})
+  res.render("login");
+});
 
 rutas.post("/skater-create", (req, res) => {
+  const { fotos } = req.files;
+  fotos.mv(`${__dirname}/public/imgs/${fotos.name}`, (err) => {
+    console.log(err);
+  });
+  req.body.foto = fotos.name;
+  req.body.estado = false;
   db.ingresar(req.body)
     .then(() => res.redirect("/"))
-    .catch((err) => res.render("error", { title: "Error al crear skater", message: err }))
-})
-
-rutas.post("/skaters-create", (req, res) => {
-  const { fotos } = req.files;
-  fotos.mv(`${__dirname}/public/imgs/${fotos}.jpg`, (err) => {
-  res.redirect('/')
-  });
+    .catch((err) =>
+      res.render("error", { title: "Error al crear skater", message: err })
+    );
 });
+
 
 // rutas.get('/login-inicio', (req, res) => {
 //   const { email, password } = req.query;
@@ -60,4 +63,4 @@ rutas.post("/skaters-create", (req, res) => {
 //   }
 // })
 
-module.exports = rutas
+module.exports = rutas;

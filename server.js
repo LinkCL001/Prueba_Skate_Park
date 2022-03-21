@@ -17,13 +17,11 @@ app.use(bodyParser.json())
 
 app.set("view engine", "handlebars");
 
-app.use("/", express.static(__dirname + "/Assets/css/estilos.css"));
+// app.use("/", express.static(__dirname + "/Assets/css/estilos.css"));
 
-app.set("views", "./views")
+// app.set("views", "./views")
 
-app.get("/", (_, res) => {
-  res.render("Dashboard", {});
-});
+app.use("/imgs", express.static(__dirname + "/rutas/public/imgs"))
 
 app.use(
   "/bootstrap",
@@ -40,7 +38,7 @@ app.use(
 app.use(expressFileUpload({
   limits: { fileSize: 5000000 },
   abortOnLimit: true,
-  responseOnLimit: "El peso del archivo que intentas subir supera ellimite permitido",
+  responseOnLimit: "El peso del archivo que intentas subir supera el limite permitido",
   })
 );
 
