@@ -1,8 +1,5 @@
 # Despliegue y Contenedores
 
-Buenas chicos, aquí os dejo el proyecto que avanzamos el jueves
-junto con algunos cambios.
-
 ## Estructura del proyecto
 
 ```bash
